@@ -7,7 +7,6 @@ public class Main {
             JFrame window = new JFrame("Raycasting Maze");
             window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             window.setResizable(false);
-
             GamePanel panel = new GamePanel();
             window.add(panel);
             window.pack();
