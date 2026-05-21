@@ -41,18 +41,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        // ceiling
-        g.setColor(new Color(50, 50, 50));
+        g.setColor(new Color(50, 50, 50)); //ceiling
         g.fillRect(0, 0, WIDTH, HEIGHT / 2);
 
-        // floor
-        g.setColor(new Color(100, 100, 100));
+        g.setColor(new Color(100, 100, 100)); //floor
         g.fillRect(0, HEIGHT / 2, WIDTH, HEIGHT / 2);
 
-        // walls
-        raycaster.render(g, player, map, WIDTH, HEIGHT);
+        raycaster.render(g, player, map, WIDTH, HEIGHT); //walls
 
-        // win overlay
         if (gameWon) {
             g.setColor(new Color(0, 180, 0, 160));
             g.fillRect(0, 0, WIDTH, HEIGHT);

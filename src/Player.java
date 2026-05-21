@@ -1,7 +1,7 @@
 public class Player {
 
-    double x = 2.0;
-    double y = 2.0;
+    double x = 1.5;
+    double y = 1.5;
 
     double dirX = 1.0;
     double dirY = 0.0;
@@ -9,12 +9,21 @@ public class Player {
     double planeX = 0.0;
     double planeY = 0.66; //FOV in degrees
 
+    private static final double MARGIN = 0.2;
+
     public void move(double speed, Map map) {
         double newX = x + dirX * speed;
         double newY = y + dirY * speed;
 
-        if (map.getCell((int) newX, (int) y) == 0) x = newX;
-        if (map.getCell((int) x, (int) newY) == 0) y = newY;
+        if (clearAt(newX, y, map)) x = newX;
+        if (clearAt(x, newY, map)) y = newY;
+    }
+
+    private boolean clearAt(double px, double py, Map map) {
+        return map.getCell((int)(px + MARGIN), (int)(py + MARGIN)) == 0 &&
+               map.getCell((int)(px + MARGIN), (int)(py - MARGIN)) == 0 &&
+               map.getCell((int)(px - MARGIN), (int)(py + MARGIN)) == 0 &&
+               map.getCell((int)(px - MARGIN), (int)(py - MARGIN)) == 0;
     }
 
     public void rotate(double angle) {
